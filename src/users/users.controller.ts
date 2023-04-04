@@ -61,6 +61,7 @@ export class UsersController {
   @ApiHeader({
     name: 'x-auth-token',
   })
+  @UseGuards(AuthGuard)
   updatePassword(@Body() body: UpdatePasswordDto, @CurrentUser() currentUser) {
     return this.authService.updatePassword(body, currentUser);
   }
