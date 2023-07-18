@@ -7,6 +7,8 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { configValidationSchema } from './config.schema';
 import { UsersModule } from './users/users.module';
 import { AllExceptionFilter } from './all-exception.filter';
+import { BooksModule } from './books/books.module';
+import { SeedsModule } from './seeds/seeds.module';
 
 @Module({
   imports: [
@@ -30,6 +32,8 @@ import { AllExceptionFilter } from './all-exception.filter';
         uri: config.get('MONGO_URI'),
       }),
     }),
+    BooksModule,
+    SeedsModule,
   ],
   controllers: [],
   providers: [
