@@ -9,9 +9,13 @@ import { UsersModule } from './users/users.module';
 import { AllExceptionFilter } from './all-exception.filter';
 import { BooksModule } from './books/books.module';
 import { SeedsModule } from './seeds/seeds.module';
+import { CartModule } from './cart/cart.module';
+import { OrdersModule } from './orders/orders.module';
 
 @Module({
   imports: [
+    CartModule,
+    OrdersModule,
     JwtModule.registerAsync({
       global: true,
       inject: [ConfigService],

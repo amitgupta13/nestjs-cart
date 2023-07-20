@@ -80,7 +80,6 @@ UserSchema.methods.matchPassword = async function (enteredPassword) {
 
 UserSchema.methods.getPasswordResetToken = function () {
   const resetToken = randomBytes(20).toString('hex');
-  console.log({ resetToken });
   this.resetPasswordToken = createHash('sha256')
     .update(resetToken)
     .digest('hex');

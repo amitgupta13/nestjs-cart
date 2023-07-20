@@ -19,6 +19,7 @@ import { ResetPasswordDto } from './dtos/reset-password.dto';
 import { AuthGuard } from 'src/guards/auth.guard';
 import { UpdatePasswordDto } from './dtos/update-password.dto';
 import { CurrentUser } from './decorators/current-user.decorator';
+import { User } from './schemas';
 
 @Controller('users')
 @ApiTags('Users')
@@ -62,7 +63,10 @@ export class UsersController {
     name: 'x-auth-token',
   })
   @UseGuards(AuthGuard)
-  updatePassword(@Body() body: UpdatePasswordDto, @CurrentUser() currentUser) {
+  updatePassword(
+    @Body() body: UpdatePasswordDto,
+    @CurrentUser() currentUser: User,
+  ) {
     return this.authService.updatePassword(body, currentUser);
   }
 

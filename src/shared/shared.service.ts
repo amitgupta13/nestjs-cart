@@ -6,7 +6,6 @@ export class SharedService {
     let query;
 
     const reqQuery = { ...requestQuery };
-
     //fields to exclude
     const removeFields = ['select', 'sort', 'page', 'limit'];
 
@@ -22,6 +21,8 @@ export class SharedService {
       (match) => `$${match}`,
     );
     query = model.find(JSON.parse(queryStr));
+
+    const totalCount = await model.find(JSON.parse(queryStr)).countDocuments();
     //select fields
     if (requestQuery.select) {
       const fields = requestQuery.select.split(',').join(' ');
@@ -40,7 +41,6 @@ export class SharedService {
     const limit = parseInt(requestQuery.limit, 10) || 100;
     const startIndex = (page - 1) * limit;
     const endIndex = page * limit;
-    const total = await model.countDocuments();
 
     query.skip(startIndex).limit(limit);
 
@@ -54,7 +54,7 @@ export class SharedService {
     //Pagination Result
     const pagination: any = {};
 
-    if (endIndex < total) {
+    if (endIndex < totalCount) {
       pagination.next = {
         page: page + 1,
         limit,
@@ -67,8 +67,10 @@ export class SharedService {
         limit,
       };
     }
-
     return {
+      totalCount,
+      currentPage: page,
+      limit,
       success: true,
       count: results.length,
       pagination,
