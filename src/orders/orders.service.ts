@@ -6,7 +6,6 @@ import { CreateOrderDto } from './dtos/create-order.dto';
 import { randomBytes } from 'crypto';
 import { CartService } from '../cart/cart.service';
 import { DispatchStatus, TransactionStatus } from '../constants';
-import { CartItem } from 'src/cart/schemas/cart.schema';
 
 @Injectable()
 export class OrdersService {
@@ -16,7 +15,7 @@ export class OrdersService {
   ) {}
 
   getOrders(user) {
-    return this.orderModel.findOne({ user: user._id }).populate('items.book');
+    return this.orderModel.find({ user: user._id }).populate('items.book');
   }
 
   async addOrder(body: CreateOrderDto, user) {

@@ -1,10 +1,10 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { Type } from 'class-transformer';
-import { IsArray, IsNumber, IsString, ValidateNested } from 'class-validator';
+import { IsArray, IsMongoId, IsNumber, ValidateNested } from 'class-validator';
 
 class CartItem {
   @ApiProperty()
-  @IsString()
+  @IsMongoId()
   book: string;
 
   @ApiProperty()

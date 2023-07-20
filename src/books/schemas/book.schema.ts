@@ -14,6 +14,12 @@ class Book {
 
   @Prop({
     required: true,
+    trim: true,
+  })
+  url: string;
+
+  @Prop({
+    required: true,
   })
   price: number;
 

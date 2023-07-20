@@ -3,7 +3,7 @@ import { HydratedDocument, Schema as MongooseSchema, Types } from 'mongoose';
 
 type RatingDocument = HydratedDocument<Rating>;
 
-@Schema()
+@Schema({ timestamps: true })
 class Rating {
   @Prop({
     required: true,

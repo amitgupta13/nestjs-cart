@@ -6,4 +6,5 @@ export interface BookInterface {
   price: number;
   authors: NonEmptyArray<string>;
   averageRating: number;
+  url: string;
 }

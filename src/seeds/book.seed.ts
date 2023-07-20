@@ -18,6 +18,7 @@ export class BookSeed {
         authors: item.authors,
         price: item.price,
         averageRating: 0,
+        url: item.url,
       })) as BookInterface[],
     );
   }
