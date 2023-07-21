@@ -44,7 +44,7 @@ import { OrdersModule } from './orders/orders.module';
     {
       provide: APP_PIPE,
       useValue: new ValidationPipe({
-        whitelist: true,
+        whitelist: false,
       }),
     },
     {

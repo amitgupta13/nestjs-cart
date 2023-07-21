@@ -10,6 +10,8 @@ export class BookSeed {
 
   @Command({ command: 'create:books', describe: 'create list of books' })
   async create() {
+    const { data } = await this.bookService.getBooks({});
+    if (data.length) return;
     await this.bookService.flushBooks();
     return this.bookService.addBooks(
       books.map((item) => ({

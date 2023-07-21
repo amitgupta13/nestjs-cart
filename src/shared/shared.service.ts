@@ -7,7 +7,7 @@ export class SharedService {
 
     const reqQuery = { ...requestQuery };
     //fields to exclude
-    const removeFields = ['select', 'sort', 'page', 'limit'];
+    const removeFields = ['select', 'sort', 'page', 'limit', 'search'];
 
     //loop over removeFields and delete them from req.query
     removeFields.forEach((param) => delete reqQuery[param]);
@@ -20,9 +20,21 @@ export class SharedService {
       /\b(gt|gte|lt|lte|in)\b/g,
       (match) => `$${match}`,
     );
-    query = model.find(JSON.parse(queryStr));
 
-    const totalCount = await model.find(JSON.parse(queryStr)).countDocuments();
+    const parsedQuery = JSON.parse(queryStr);
+    if (requestQuery.search)
+      parsedQuery.$or = [
+        {
+          title: { $regex: new RegExp(requestQuery.search, 'ig') },
+        },
+        {
+          authors: { $regex: new RegExp(requestQuery.search, 'ig') },
+        },
+      ];
+
+    query = model.find(parsedQuery);
+
+    const totalCount = await model.find(parsedQuery).countDocuments();
     //select fields
     if (requestQuery.select) {
       const fields = requestQuery.select.split(',').join(' ');
