@@ -1,7 +1,7 @@
 import { Model } from 'mongoose';
 import { BooksService } from '../books.service';
 import { BookDocument, RatingDocument, Book, Rating } from '../schemas';
-import { Test } from '@nestjs/testing';
+import { Test, TestingModule } from '@nestjs/testing';
 import { getModelToken } from '@nestjs/mongoose';
 import { SharedService } from '../../shared/shared.service';
 import {
@@ -22,7 +22,7 @@ describe('BooksService', () => {
       advancedResults: async () => mockPaginatedData,
     };
 
-    const module = await Test.createTestingModule({
+    const module: TestingModule = await Test.createTestingModule({
       providers: [
         BooksService,
         {
@@ -74,6 +74,11 @@ describe('BooksService', () => {
       { book: 'bookId', rating: 5 },
       {},
     );
+    expect(rating).toBeDefined();
+  });
+
+  it('should get users rating', async () => {
+    const rating: any = await service.getUserRating('bookId', {});
     expect(rating).toBeDefined();
   });
 });

@@ -5,20 +5,20 @@ export class GetBooksDto {
   @ApiProperty({ required: false })
   @IsString()
   @IsOptional()
-  select: string;
+  select?: string;
 
   @ApiProperty({ required: false })
   @IsString()
   @IsOptional()
-  sort: string;
+  sort?: string;
 
   @ApiProperty({ required: false })
   @IsString()
   @IsOptional()
-  page: string;
+  page?: string;
 
   @ApiProperty({ required: false })
   @IsString()
   @IsOptional()
-  limit: string;
+  limit?: string;
 }

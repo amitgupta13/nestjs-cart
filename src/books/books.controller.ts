@@ -10,9 +10,9 @@ import {
 import { BooksService } from './books.service';
 import { GetBooksDto } from './dtos/get-books.dto';
 import { ApiHeader, ApiTags } from '@nestjs/swagger';
-import { AuthGuard } from 'src/guards/auth.guard';
+import { AuthGuard } from '../guards/auth.guard';
 import { AddRatingDto } from './dtos/add-rating.dto';
-import { CurrentUser } from 'src/users/decorators/current-user.decorator';
+import { CurrentUser } from '../users/decorators/current-user.decorator';
 import { GetRatingsDto } from './dtos/get-ratings.dto';
 
 @ApiTags('Books')

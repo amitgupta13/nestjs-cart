@@ -98,3 +98,10 @@ export const mockPaginatedData = {
     },
   ],
 };
+
+export const mockBooksService = {
+  getBooks: (query) => Promise.resolve(mockPaginatedData),
+  getRatings: (params) => Promise.resolve(ratings),
+  addRating: (body, user) => Promise.resolve(ratings[0]),
+  getUserRating: (bookId, user) => Promise.resolve(ratings[0]),
+};
