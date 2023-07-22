@@ -3,7 +3,7 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Book, BookDocument, Rating, RatingDocument } from './schemas';
 import { Model } from 'mongoose';
 import { BookInterface } from './interfaces/book.interfaces';
-import { SharedService } from 'src/shared/shared.service';
+import { SharedService } from '../shared/shared.service';
 import { AddRatingDto } from './dtos/add-rating.dto';
 
 @Injectable()

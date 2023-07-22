@@ -2,7 +2,6 @@ import { Command } from 'nestjs-command';
 import { Injectable } from '@nestjs/common';
 import { BooksService } from '../books/books.service';
 import { books } from './data';
-import { BookInterface } from 'src/books/interfaces/book.interfaces';
 
 @Injectable()
 export class BookSeed {
@@ -19,9 +18,9 @@ export class BookSeed {
         title: item.title,
         authors: item.authors,
         price: item.price,
-        averageRating: 0,
+        averageRating: item.averageRating,
         url: item.url,
-      })) as BookInterface[],
+      })),
     );
   }
 }

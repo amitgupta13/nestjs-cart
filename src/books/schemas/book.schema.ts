@@ -3,12 +3,12 @@ import { HydratedDocument } from 'mongoose';
 
 type BookDocument = HydratedDocument<Book>;
 
-@Schema()
+@Schema({ timestamps: true })
 class Book {
   @Prop({
     required: true,
     trim: true,
-    maxlength: [10, 'Book name cannot be more than 10 chars'],
+    maxlength: [50, 'Book name cannot be more than 10 chars'],
   })
   title: string;
 
@@ -35,9 +35,6 @@ class Book {
     max: [5, 'Rating cannot be more than 5'],
   })
   averageRating: number;
-
-  @Prop({ type: Date, default: Date.now })
-  createdAt: Date;
 }
 
 const BookSchema: any = SchemaFactory.createForClass(Book);

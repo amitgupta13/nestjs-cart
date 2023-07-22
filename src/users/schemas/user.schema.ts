@@ -33,6 +33,7 @@ class User {
 
   @Prop({
     maxlength: [20, 'Phone number can not be longer than 20 characters'],
+    match: [regex.mobile, 'Please add a valid mobile'],
   })
   mobile: string;
 
@@ -41,6 +42,7 @@ class User {
     required: [true, 'Please add a password'],
     minlength: 6,
     select: false,
+    match: [regex.password, 'Please add a valid password'],
   })
   password: string;
 
